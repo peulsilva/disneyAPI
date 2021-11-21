@@ -1,0 +1,288 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Disney API documentation",
+    "description": "This is a REST API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "matheusraofc@gmail.com"
+    }
+  },
+  "paths": {
+    "/list-movies": {
+      "get": {
+        "tags": [
+          "movies"
+        ],
+        "summary": "List all movies",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tile": {
+                        "type": "string"
+                      },
+                      "Production company": {
+                        "type": "string"
+                      },
+                      "Distributed by": {
+                        "type": "string"
+                      },
+                      "Release Date": {
+                        "type": "string"
+                      },
+                      "Running time": {
+                        "type": "string"
+                      },
+                      "Country": {
+                        "type": "string"
+                      },
+                      "Language": {
+                        "type": "string"
+                      },
+                      "Box office": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "title": "Academy Award Review of Walt Disney Cartoons",
+                      "Production company": "Walt Disney Productions",
+                      "Distributed by": "RKO Radio Pictures",
+                      "Release date": [
+                        "May 19, 1937 ( 1937-05-19 )"
+                      ],
+                      "Running time": "41 minutes (74 minutes 1966 release)",
+                      "Country": "United States",
+                      "Language": "English",
+                      "Box office": "$45.472"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies/title/{title}": {
+      "get": {
+        "tags": [
+          "movies"
+        ],
+        "summary": "Get movie by title",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tile": {
+                      "type": "string"
+                    },
+                    "Production company": {
+                      "type": "string"
+                    },
+                    "Distributed by": {
+                      "type": "string"
+                    },
+                    "Release Date": {
+                      "type": "array"
+                    },
+                    "Running time": {
+                      "type": "string"
+                    },
+                    "Country": {
+                      "type": "string"
+                    },
+                    "Language": {
+                      "type": "string"
+                    },
+                    "Box office": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "title": "Academy Award Review of Walt Disney Cartoons",
+                    "Production company": "Walt Disney Productions",
+                    "Distributed by": "RKO Radio Pictures",
+                    "Release date": [
+                      "May 19, 1937 ( 1937-05-19 )"
+                    ],
+                    "Running time": "41 minutes (74 minutes 1966 release)",
+                    "Country": "United States",
+                    "Language": "English",
+                    "Box office": "$45.472"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Movie not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies/director/{director}": {
+      "get": {
+        "tags": [
+          "movies"
+        ],
+        "summary": "Get movies by director",
+        "parameters": [
+          {
+            "name": "director",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tile": {
+                        "type": "string"
+                      },
+                      "Production company": {
+                        "type": "string"
+                      },
+                      "Distributed by": {
+                        "type": "string"
+                      },
+                      "Release Date": {
+                        "type": "array"
+                      },
+                      "Directed by": {
+                        "type": "array"
+                      },
+                      "Running time": {
+                        "type": "string"
+                      },
+                      "Country": {
+                        "type": "string"
+                      },
+                      "Language": {
+                        "type": "string"
+                      },
+                      "Box office": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "title": "Academy Award Review of Walt Disney Cartoons",
+                      "Production company": "Walt Disney Productions",
+                      "Distributed by": "RKO Radio Pictures",
+                      "Release date": [
+                        "May 19, 1937 ( 1937-05-19 )"
+                      ],
+                      "Directed by": [
+                        "David Hand",
+                        "William Cottrell",
+                        "Wilfred Jackson",
+                        "Larry Morey",
+                        "Perce Pearce",
+                        "Ben Sharpsteen"
+                      ],
+                      "Running time": "41 minutes (74 minutes 1966 release)",
+                      "Country": "United States",
+                      "Language": "English",
+                      "Box office": "$45.472"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Director not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Director not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies-count": {
+      "get": {
+        "tags": [
+          "movies"
+        ],
+        "summary": "Count all movies",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "count": 1000
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
